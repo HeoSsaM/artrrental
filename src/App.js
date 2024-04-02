@@ -1,23 +1,111 @@
-import logo from './logo.svg';
+import React, { createContext, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/reset.css';
+import './css/fonts.css';
 import './App.css';
 
+import data from './data';
+import Homepage from "./pages/Homepage";
+import Sub11 from "./pages/Sub11";
+import Sub2 from "./pages/Sub2";
+import Sub3 from "./pages/Sub3";
+import Page404 from "./pages/Page404";
+import AuthorInfo from "./pages/AuthorInfo";
+import WritersCall from "./pages/WritersCall";
+
+//context 문법 1
+export let Context1 = createContext(); //state 보관함
+
 function App() {
+  //useNavigate() - 함수이므로 변수에 담아서 선언을 일반적으로 함.
+  let navigate = useNavigate();
+  let [pic, setPic] = useState(data);
+  //console.log(pic)
+  let [showButton, setShowButton] = useState(true)
+
+  //useContext에서 사용할 state
+  let [stock, useStock] = useState([10,15,20]); //sub1, Tabcontent에서 사용
+
+  // sub1/:id 경로가 클릭되면 첫번째 페이지를 보여주는 navigate 함수 선언
+  const goToSub1 = (id) => {
+    navigate(`/sub11/${id}`)
+  }
+
+  //axios로 데이터 요청
+  const fetchData =()=> {
+    axios.get("https://raw.githubusercontent.com/HeoSsaM/shop2/main/data2.json")
+    .then ((result)=> {
+      //console.log(result.data);
+      let copy = [...pic, ...result.data]; //pic이 가지고 있는 data.js와 서버에서 받은 data2.json의 데이터를 각각 복사해서 copy라는 변수에 저장
+      //console.log("copy:",copy);
+      setPic(copy)
+
+      if (result.data.length == 0) {
+        setShowButton(false);
+      }
+    })
+    .catch (()=> {
+      console.log("실패")
+    })
+  }
+
+  //상품더보기 버튼을 클릭하면 실행되는 함수
+  const btnDataClick = () => {
+    fetchData();
+    setShowButton(false); //버튼이 클릭되면 비활성화
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrap">
+      <div className="nav-wrap">
+        <Navbar bg="dark" variant="dark">
+          <div className="gnb-area">
+            <Navbar.Brand href="/" className="logo">
+              STAY MIND
+            </Navbar.Brand>
+            <Nav className="me-auto gnb">
+              <Nav.Link onClick={()=>goToSub1(0)}>작품보기</Nav.Link>
+              {/* sub2 서브메뉴 */}
+              <NavDropdown title="작가별" id="basic-nav-dropdown">
+                <NavDropdown.Item
+                  onClick={() => navigate("/sub2/sub2-1")}
+                  className="nav-submenu" >
+                  작가소개
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => navigate("/sub2/sub2-2")}
+                  className="nav-submenu">
+                  작가 공모
+                </NavDropdown.Item>
+              </NavDropdown>   
+
+              <Nav.Link href="/sub3">이벤트</Nav.Link>           
+            </Nav>
+          </div>
+        </Navbar>
+      </div>
+      {/* //navbar */}
+
+      <Routes>
+      <Route path="/" element={<Homepage pic={pic} showButton={showButton} btnDataClick={btnDataClick} />} />
+
+      {/* useContent 문법2 = <provider></provider> */}      
+        <Route path="/sub11/:id" element={          
+          <Context1.Provider value={ {stock, pic} }><Sub11 pic={pic} />
+          </Context1.Provider>
+        } />
+        
+        <Route path="/sub2" element={<Sub2 pic={pic} showButton={showButton} btnDataClick={btnDataClick} />} >
+          <Route path="sub2-1" element={ <AuthorInfo pic={pic} />}></Route>
+          <Route path="sub2-2" element={ <WritersCall />}></Route>
+        </Route>
+        <Route path="/sub3" element={<Sub3 />}/>
+        <Route path="*" element={<Page404 />}/>
+      </Routes>
     </div>
   );
 }

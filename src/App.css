@@ -1,38 +1,231 @@
-.App {
-  text-align: center;
+/* 공통요소 */
+.wrap {
+  position: relative;
+  padding-bottom: 40px;
+  height: 100%;
+}
+.container {
+  position: relative;
+  max-width: 96%;
+  padding-bottom: 40px;
+}
+.content {margin-bottom: 15px;}
+.price {margin-bottom: 30px;}
+button {
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+.btn-change {background: steelblue; color: #fff;font-size: 15px;}
+h2 {
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  padding-left: 24px !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* animation  */
+.start {
+  opacity: 0;  
+}
+.end {
+  opacity: 1;  
+  transition: opacity 0.5s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+
+.small-title {
+  margin-bottom: 40px;
+}
+.small-title span {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.7);
+  margin-top: 5px;
+}
+h2:before {
+  position: absolute;
+  top: 45%; left: 0;
+  width: 12px;
+  height: 4px;
+  background: seagreen;
+  content: '';
+}
+h3  {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.7)
+}
+/* gnb-area */
+.nav-wrap {
+  padding: 0 2.5%;
+  background: #212529;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-link {font-weight: 400;}
+.navbar-expand .navbar-nav .dropdown-menu {
+  left: 0;
+  min-width: 8rem;
+}
+.gnb-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gnb-area .logo {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  width: 24vw;
+  color: #27c762;
+}
+
+.gnb-area .gnb {
+  width: 66vw;
+  display: flex;
+  justify-content: end;
+}
+
+.gnb-area .nav-link {
+  margin: 0 5px;
+}
+
+.gnb-area .nav-link:last-child {
+  margin-right: 0;
+}
+
+/* SUB01 -HOME */
+.main-bg {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 50vh;
+  background: linear-gradient(45deg, rgba(109, 47, 20, 0.3), rgba(215, 173, 96, 0.2)), url('./main01.jpg') no-repeat left center/cover;
 }
 
-.App-link {
-  color: #61dafb;
+.main-bg h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 60px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.main-bg p {
+  color: rgba(255, 255, 255, 0.8);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* card css */
+.pic-area {
+  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.pic-area .pic-img {  
+  margin-bottom: 30px;
+  width: 48%;
+}
+.pic-area .pic-img .pic {
+  
+}
+.pic-area .pic-img figure {
+  overflow: hidden;
+  height: 200px;
+  margin-bottom: 25px;
+}
+.pic-img figure img {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 15px;
+}
+.content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  letter-spacing: -1px;
+  word-break: keep-all;  
+}
+.author {
+  font-weight: 500;  
+  color: #000;
+  margin-bottom: 10px;
+}
+
+/* pic */
+.container.picture {
+  padding-top: 60px
+}
+
+.container.picture .img img {
+  max-width: 100%;
+}
+.container.picturec .pic-info * {margin-bottom: 10px;}
+
+/* 작가별 */
+.authorList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.authorList .author-area {
+  width: 48%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 26px;
+}
+.authorList .author-area:hover {
+  border-color: #22a351;
+}
+.author-pic {
+  height: 140px;
+  overflow: hidden;
+}
+.author-pic img {width: 100%; height: 100%;}
+.text-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.text-wrap .author {margin-bottom: 0;}
+.text-wrap .btn-view {background: rgba(0, 0, 0, 0.614); color: #fff; font-size: 15px;}
+.btn-data {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+}
+
+/* tab */
+.tab-menu {
+  margin-top: 40px;
+}
+.tab-menu a {
+  color: seagreen
+}
+.tab-content {
+  margin-top: 20px;
+}
+.tab-content li {
+  margin-bottom: 5px;
+}
+
+/* fade animatino */
+.start {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.end {
+  opacity: 1;
 }

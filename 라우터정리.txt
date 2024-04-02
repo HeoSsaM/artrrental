@@ -1,0 +1,18 @@
++++ react-Router +++
+1) index.js - <BrowserRouter>
+
+2) App.js
+    Routes
+    -- Route -> 페이지를 이동할 때 이동할 경로와 페이지에 로드될 컴포넌트를 보여줌
+
+    useNavigate -> 함수/마우스 이벤트가 있을 때 페이지 이동(예: 버튼)
+    Navigate 
+    -> component -> 페이지가 이동할 주소 -> 리다이렉션  
+    -> 특정조건이 만족이 되면 해당 페이지로 연결
+
+    Link = a태그 대신에 선언
+
+    Nested Route
+    -> 하위메뉴를 생성
+    -> <Outlet>은 Nested Route 안의 엘리먼트들을 어디에 보여줄지 표기
+  

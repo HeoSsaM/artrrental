@@ -1,0 +1,55 @@
+Restful Routes
+- URL 디자인 
+- 데이터를 생성/수정(업데이트)/삭제의 일련의 과정들을 설계하는 방식
+
+react-router-dom
+- Routes
+- Route -> 생성된 component(=page)를 로드
+- useNavigate -> 마우스 이벤트가 발생시 페이지 링크(버튼)
+- Link -> a태그와 동일
+- Navigate -> 조건에 따라서 조건이 충족이 됐을 때 페이지가 이동
+- Nested Route -> depth2를 생성할 주로 선언
+<Route~~~element={<Sub2 />}>
+     <Route ~~ elemet={<Sub2-1> />
+</Route>
+
+-Sub2.js
+  <Outlet> -> <Sub2-1> 이 보여지도록 함.
+
+
+****** useEffect ************************
+1) useEffect를 쓰는 이유
+- 어려운 연산
+- 서버에서 데이터를 가져오는 작업
+- 타이머 선언
+
+2) useEffect lifeCyle
+-> mount = rendering (생성)
+-> update = 데이터를 수정
+-> unmount = 제거
+
+3) useEffect 실행조건
+useEffect(()=> {
+	실행할코드
+})   -> 새로고침(재렌더링)할 때마다 코드 실행
+
+useEffect(()=> {
+	실행할코드
+},[])   -> 처음 렌더링한다음에 1회 코드 실행
+
+useEffect(()=> {
+	실행할코드
+},[state변수])   -> (값이 업데이트될 때마다) 특정 state가 변경시에만 코드 재실행(재렌더링)
+
+
+clean up function ->  타미어제거, socket 연결 요청 제거, ajax 요청 중단
+
+
+
+
+
+
+
+
+
+
