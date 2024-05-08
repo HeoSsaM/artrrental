@@ -10,9 +10,10 @@ import './App.css';
 
 import data from './data';
 import Homepage from "./pages/Homepage";
-import Sub11 from "./pages/Sub11";
+import Sub1 from "./pages/Sub1";
 import Sub2 from "./pages/Sub2";
 import Sub3 from "./pages/Sub3";
+import Cart from "./pages/Cart";
 import Page404 from "./pages/Page404";
 import AuthorInfo from "./pages/AuthorInfo";
 import WritersCall from "./pages/WritersCall";
@@ -32,7 +33,7 @@ function App() {
 
   // sub1/:id 경로가 클릭되면 첫번째 페이지를 보여주는 navigate 함수 선언
   const goToSub1 = (id) => {
-    navigate(`/sub11/${id}`)
+    navigate(`/sub1/${id}`)
   }
 
   //axios로 데이터 요청
@@ -92,18 +93,20 @@ function App() {
 
       <Routes>
       <Route path="/" element={<Homepage pic={pic} showButton={showButton} btnDataClick={btnDataClick} />} />
+      <Route path="/sub1/:id" element={< Sub1 pic={pic} />} /> 
 
       {/* useContent 문법2 = <provider></provider> */}      
-        <Route path="/sub11/:id" element={          
+        {/* <Route path="/sub1/:id" element={          
           <Context1.Provider value={ {stock, pic} }><Sub11 pic={pic} />
           </Context1.Provider>
-        } />
+        } /> */}
         
-        <Route path="/sub2" element={<Sub2 pic={pic} showButton={showButton} btnDataClick={btnDataClick} />} >
+        <Route path="/sub2/*" element={<Sub2 pic={pic} showButton={showButton} btnDataClick={btnDataClick} />} >
           <Route path="sub2-1" element={ <AuthorInfo pic={pic} />}></Route>
           <Route path="sub2-2" element={ <WritersCall />}></Route>
         </Route>
         <Route path="/sub3" element={<Sub3 />}/>
+        <Route path="/cart" element={<Cart />}/>
         <Route path="*" element={<Page404 />}/>
       </Routes>
     </div>
