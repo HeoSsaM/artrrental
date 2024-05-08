@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
@@ -84,7 +84,7 @@ function App() {
                 </NavDropdown.Item>
               </NavDropdown>   
 
-              <Nav.Link href="/sub3">이벤트</Nav.Link>           
+              <Nav.Link onClick={() => navigate("/sub3")}>이벤트</Nav.Link>           
             </Nav>
           </div>
         </Navbar>
