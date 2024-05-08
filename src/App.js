@@ -38,7 +38,7 @@ function App() {
 
   //axios로 데이터 요청
   const fetchData =()=> {
-    axios.get("https://raw.githubusercontent.com/HeoSsaM/shop2/main/data2.json")
+    axios.get("https://raw.githubusercontent.com/HeoSsaM/artrrental/master/data2.json")
     .then ((result)=> {
       //console.log(result.data);
       let copy = [...pic, ...result.data]; //pic이 가지고 있는 data.js와 서버에서 받은 data2.json의 데이터를 각각 복사해서 copy라는 변수에 저장
