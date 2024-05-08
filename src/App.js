@@ -25,7 +25,7 @@ function App() {
   //useNavigate() - 함수이므로 변수에 담아서 선언을 일반적으로 함.
   let navigate = useNavigate();
   let [pic, setPic] = useState(data);
-  //console.log(pic)
+  console.log(pic)
   let [showButton, setShowButton] = useState(true)
 
   //useContext에서 사용할 state
